@@ -1,0 +1,192 @@
+<!-- gameDescription.html -->
+{% extends "template.html" %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/gameDescription.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <title>CS235 Game Library - {{ game.title }}</title>
+{% endblock %}
+
+
+{% block main %}
+
+    <section>
+        <div class="section_title">
+            <h1>{{ game.title }}</h1>
+        </div>
+    </section>
+    <section>
+        <div class="game_info">
+            <div class="info_left">
+                <div class="game_img">
+                    <img src="{{ game.image_url }}" alt="">
+                </div>
+            </div>
+            <div class="right">
+                <div class="game_detail">
+                    <dl>
+                        <dt>Release Date</dt>
+                        <dd>{{ game.release_date }}</dd>
+
+                        <dt>Price</dt>
+
+                        {% if game.price == 0 %}
+                        <dd>Free to Play</dd>
+                        {% else %}
+                        <dd>NZ$ {{ game.price }}</dd>
+                        {% endif %}
+
+                        <dt>Publisher</dt>
+                        <dd>{{ game.publisher_name }}</dd>
+
+                        <dt>Average rating</dt>
+                        {% if game.num_game_reviews == 0 %}
+                            <dd>No customer review yet</dd>
+                        {% else %}
+                            {% for i in range(game.game_reviews_average_rating) %}<!--show the game average rating-->
+                                <span class="fa fa-star checked"></span>
+                            {% endfor %}
+                            {% for i in range(5-game.game_reviews_average_rating) %}<!--show the game average rating-->
+                                <span class="fa fa-star"></span>
+                            {% endfor %}
+                        {% endif %}
+
+                        {% if game.website_url is not none %}
+                            <dt>Website</dt>
+                            <dd>
+                                <a href ="{{ game.website_url }}">{{ game.website_url }}</a>
+                            </dd>
+                        {% endif %}
+
+                        <dt>Genres</dt>
+                        {% for genre in game.genres %}
+                            <dd>
+                                <a href = "/genre/{{genre}}" class = "genre_link">{{ genre }}</a>
+                                <br>
+                            </dd>
+                        {% endfor %}
+                    </dl>
+                    {% if favourite_list == False %}
+                        <a class="favourite_b" id="{{game.game_id}}" onclick=favourite(id)>Add to favourite</a>
+                    {% else %}
+                        <a class="favourite_b" id="{{game.game_id}}" onclick=favourite(id)>Remove from favourite</a>
+                    {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="game_awards"> <!-- Showing the game reviews from the CSV file. Can't import now due to Model. -->
+        <h3>Game Awards</h3>
+            <p class="game_awards_content">No data</p> <!-- Can't import now due to the limit of Model. -->
+    </section>
+    <section class="game_description">
+        <h3>About this game</h3>
+        <p class="game_description_content">
+            {{ game.description }}
+        </p>
+    </section>
+    <section class="right">
+        <div class="related">
+
+        </div>
+    </section>
+
+    <section class="game_all_user_reviews"> <!-- This section shows all user reviews. No data for now. -->
+        <h3>Customer reviews</h3>
+        {% if game.num_game_reviews == 0 %}
+            <div class="postedReview">
+                <div class="review_header">
+                    <h5>No customer review yet</h5>
+                </div>
+            </div>            
+        {% else %}
+            {% for review in review_list %}
+                <div class="postedReview">
+                    <div class="review_header">
+                        <h5 class="review_title">{{ review.user_name }}</h5>
+                        <div class="review_rating">
+                            {% for i in range(review.rating) %}
+                                <span class="fa fa-star checked"></span>
+                            {% endfor %}
+                            {% for i in range(5-review.rating) %}
+                                <span class="fa fa-star"></span>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                    <p>{{ review.comment }}</p>
+
+                </div>
+            {% endfor %}
+        {% endif %}
+            
+    </section>
+
+    <section class="user_reviews"> <!-- This section let user comment the games. -->
+        <h3>Your reviews</h3>
+            <textarea type="text" class="review" id="comment" placeholder="Your comment.." maxlength = 900></textarea>
+        <h3>Your rating</h3>
+        <p id="rate error mesage"></p>
+            <dd>
+                <div class="rate">
+                    <input type="radio" id="star5" name="rate" value="5" onclick="rating(id)" />
+                    <label for="star5">5 stars</label>
+                    <input type="radio" id="star4" name="rate" value="4" onclick="rating(id)" />
+                    <label for="star4">4 stars</label>
+                    <input type="radio" id="star3" name="rate" value="3" onclick="rating(id)" />
+                    <label for="star3">3 stars</label>
+                    <input type="radio" id="star2" name="rate" value="2" onclick="rating(id)" />
+                    <label for="star2">2 stars</label>
+                    <input type="radio" id="star1" name="rate" value="1" onclick="rating(id)" />
+                    <label for="star1">1 star</label>
+                </div>
+            </dd>
+            <br>
+            
+    </section>
+    <button class="comment_b" id="{{game.game_id}}" onclick="comment(id)">Comment</button>
+    <br>
+    <br>
+    <br>
+    <br>
+
+<script>
+    let rate = null 
+    function rating(id) {
+        rate = document.getElementById(id).value;
+        //document.getElementById("comment").value = rate;
+      return false;
+    }
+    function comment(id) {
+        var comment = document.getElementById("comment").value;
+        
+        if(rate == null){
+            //document.getElementById("comment").value = comment;
+            document.getElementById("rate error mesage").innerHTML = "Please rate for the game";
+        }
+        else if(document.getElementById("comment").value == ''){
+            document.getElementById("rate error mesage").innerHTML = "Please commend for the game";
+        }
+        else{
+            window.open("/review/"+id+"/"+rate+"/"+comment,"_parent")       
+            //url_for('review', game_id=id,rate=rate,comment=comment)     
+        }
+    }
+    function favourite(id) {
+        let target = document.getElementById(id).innerHTML;
+        let c = (target=="Add to favourite");
+        if(c == true){
+            //document.getElementById(id).innerHTML = "Remove from favourite";
+            window.open("/gameDescription/change_favourite/"+id,"_parent")
+        }
+        else{
+            //document.getElementById(id).innerHTML = "Add to favourite";
+            window.open("/gameDescription/change_favourite/"+id,"_parent")
+        }
+    }
+</script>
+
+{% endblock %}

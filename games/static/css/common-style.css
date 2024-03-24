@@ -1,0 +1,273 @@
+/* reset tag style  */
+    div {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    img {
+        vertical-align:top;
+    }
+/* 
+    input:focus {
+        border: none;
+        outline: none;
+    } */
+
+* {
+    font-family: "Myriad Pro","Open Sans",Arial,Helvetica,sans-serif;
+}
+
+body {
+    background-color: rgb(23, 30, 84);
+    color: white;
+    /* min-width: 800px; */
+    /* min-height: 10000px; */
+    padding: 0px;
+    margin: 0px;
+    font-family: "SFProDisplay";
+}
+
+div.message {
+    /* background-color: rgb(8, 15, 37); */
+    background-color: rgba(0, 0, 0, 0.25);
+    margin: 20px auto;
+    /* box-shadow: 0 0 40px rgba(206, 206, 206, 0.753); */
+    border-radius: 15px;
+}
+div.message h2 {
+    margin-block: 20px;
+    margin-left: 30px;
+    color: #c2c2c2;
+}
+
+
+header, main {
+    /* background-image: url(../images/background.png); */
+    padding-inline: 10%;
+    min-width: 800px;
+
+}
+
+
+/* header */
+header {
+    height: 150px;
+}
+div.page_title {
+    display: inline-block;
+    vertical-align: top;
+}
+
+div.page_title {
+    margin-left: 10%;
+    width: 30%;
+}
+div.page_title h1 {
+    margin-bottom: 0px;
+}
+
+div.header-container {
+    display: flex;
+}
+div.logo {
+    margin-left: 15%;
+    margin-top: 55px;
+}
+
+/* nav sidebar */
+aside {
+    width: 160px; /* width of sidebar must same as margin ofset of main element */
+    
+    /* justify-content: center; 
+    background-color: rgb(14, 30, 77);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    padding: 20px;
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    */
+    background-color: rgb(14, 30, 77);
+    
+
+    float: left;
+    height: 100%;
+    overflow-x: hidden;
+    position: fixed;    
+    text-align: center;
+    
+}
+
+ul.nav_list {
+    padding: 0;
+    text-align: left;
+}
+
+ul.nav_list li {
+    margin: 10px 0;
+    font-size: large;
+    font-family: "SFProDisplay";
+}
+
+ul.nav_list li a {
+    padding-left: 20px;
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+
+/* old style */
+/* nav {
+    float: right;
+    display: inline;
+    vertical-align: middle;
+}
+nav ul.nav_list {
+    list-style: None;
+    padding: 0%;
+    text-align: center;
+
+}
+ul.nav_list li {
+    margin-block: 10px;
+    font-size: large;
+    font-family: "SFProDisplay";
+}
+ul.nav_list li a{
+    text-decoration: none;
+    color: white;
+} */
+
+#search_b {
+    cursor: pointer;
+}
+
+main {
+    vertical-align: middle;
+    margin-left: 150px; /* offset for sidebar */
+    /* float: left; I dont know why this thing set for but this caoursing dysplay issue when #of game display is less than two so commented this out*/ 
+    margin-bottom: 50px;
+}
+
+div.section_title {
+    width: 100%;
+    height: 80px;
+    padding: 65px 0px;
+    text-align: center;
+    font-family: "Myriad Pro","Open Sans",Arial,Helvetica,sans-serif;
+}
+div.section_title h1 {
+    margin: 0px;
+    color: white;
+    font-size: 40px;
+
+}
+
+
+footer {
+    background-color: rgba(14, 30, 77, 0.75);
+    margin: 0px;
+    width: 100%;
+    height: 35px;
+    position: fixed;
+    bottom: 0;
+    /* z-index: -10; */
+}
+
+footer p.copyright {
+    text-align: center;
+    width: 100%;
+    margin: 0px;
+    padding-block: 5px;
+
+}
+
+
+
+
+.dropbtn {
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    font-size: 10px;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    background-color: #000000
+  }
+  
+  .dropdown-content a:hover {background-color: #000000}
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown:hover .genre {
+    background-color: #929292;
+  }
+
+.gg-games {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,5));
+    width: 24px;
+    height: 12px;
+    border: 3px solid transparent;
+    border-left: 6px solid transparent;
+    box-shadow:
+        0 0 0 2px,
+        inset 2px 0 0;
+    border-radius: 40px
+
+}
+.gg-games::after,
+.gg-games::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    height: 2px;
+    background: currentColor
+}
+.gg-games::before {
+    left: -2px;
+    width: 6px;
+    top: 2px
+}
+.gg-games::after {
+    border-radius: 3px;
+    width: 2px;
+    box-shadow:0 4px 0,-2px 2px 0,2px 2px 0;
+    top: 0;
+    right: 2px
+}

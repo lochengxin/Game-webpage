@@ -1,0 +1,94 @@
+<ul class="nav_list">
+
+  <li><a href="{{ url_for('home_bp.home') }}">Home</a></li>
+  {% if not authenticated %}
+    <li><a href="{{ url_for('authentication_bp.register') }}">Register</a></li>
+    <li><a href="{{ url_for('authentication_bp.login') }}">Login</a></li>
+  {% else %}
+    <li><a href="{{ url_for('authentication_bp.logout') }}">Logout</a></li>
+  {% endif %}
+  <li><br></li>
+  <li><a href="/games">List of Games</a></li>
+  {% if not authenticated %}
+    
+  {% else %}
+    <li><a onclick="favouritelist_b()">Favourites List</a></li>
+    <li><a href="{{ url_for('profile_bp.show_profile') }}">Profile</a></li>
+  {% endif %}
+
+  <li>
+      <!-- {% for genre in genres %}
+      <select name="example">
+          <option value=""></option>
+      </select>
+
+      {% endfor %} -->
+      <div class="dropdown">
+        <a class="dropbtn">Genre</a>
+        <div class="dropdown-content">
+          <!--this should be jinja for loop and call service layer -->
+          {% for genre in genres %}
+          <div class="Genre">
+              <a href="/genre/{{ genre.genre_name }}">{{ genre.genre_name }}</a>
+          </div>
+          {% endfor %}
+          <a></a>
+        </div>
+      </div>
+  </li>
+  <br>
+  <li><input type="text" id="target" placeholder="Search.."></li>
+  <!--<li><a href="/search/tet">Search</a></li>-->
+
+  <li><a id="search_b" onclick="search_f()">Search</a></li>
+  <!-- game Genre -->
+  <li>
+    <div class="dropdown">
+      <a class="dropbtn" id="type" onclick="search_f()">Search Type</a>
+      <div class="dropdown-content">
+        <!--this should be jinja for loop and call service layer -->
+        <div class="Genre">
+          <a onclick="search_genre()">Genre</a>
+          <a onclick="search_publisher()">Publisher</a>
+          <a onclick="search_title()">Title</a>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+
+<script>
+  var type = "title";
+  function search_f() {
+    var target = document.getElementById("target").value;
+    if (target != "") {
+      window.open("/search?target=" + target + "&type=" + type, "_parent");
+    }
+  }
+
+  function search_title() {
+    document.getElementById("search_b").innerHTML = "Search by Title";
+    type = "title";
+  }
+  function search_genre() {
+    document.getElementById("search_b").innerHTML = "Search by Genre";
+    type = "genre";
+  }
+  function search_publisher() {
+    document.getElementById("search_b").innerHTML = "Search by Publisher";
+    type = "publisher";
+  }
+
+    function favouritelist_b() {
+      window.open("/favourites","_parent")
+    }
+
+  const search_bar = document.getElementById('target');
+
+  search_bar.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                // Call your JavaScript function here
+                search_f();
+            }
+        });
+</script>

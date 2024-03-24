@@ -1,0 +1,7 @@
+pytest
+Flask==2.3.2
+python-dotenv
+flask-wtf==1.1.1
+password-validator==1.0
+werkzeug==2.3.7
+SQLAlchemy==1.4.41

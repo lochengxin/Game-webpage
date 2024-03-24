@@ -1,0 +1,141 @@
+main {
+    padding-inline: 0px;
+    max-width: 1500px;
+    min-width: 800px;
+
+}
+
+
+div.order_selection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+.order_selection div.orders {
+    margin: 7px 10px;
+    padding: 3px 9px;
+    background-color: rgb(8, 15, 37);
+    border-radius: 5px;
+    box-shadow: #000;   
+}
+.order_selection div.orders a {
+    font-family: "Myriad Pro","Open Sans",Arial,Helvetica,sans-serif;
+    color: whitesmoke;
+}
+.order_selection div.orders a:hover {
+    font-family: "Myriad Pro","Open Sans",Arial,Helvetica,sans-serif;
+    color: lightblue;
+    text-decoration: underline;
+}
+.order_selection h3 {
+    margin-block: 6px;
+}
+
+div.current_page {
+    text-align: center;
+}
+
+
+
+
+div.games_holder {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+div.game {
+    width: 360px;
+    height: 200px;
+    display: table;
+    margin: 10px 15px;
+    /* border-radius: 20px; */
+    background-color: rgb(16, 36, 94);
+    box-shadow: 0 0 20px rgba(206, 206, 206, 0.753);
+}
+
+div.game_img {
+    height: 168px;
+}
+
+div.game_img img {
+    width: 360px;
+    /* overflow: none; */
+}
+
+div.game_data {
+    height: 34px;
+    color: black;
+}
+
+div.game_title {
+    width: 240px;
+    display:  inline-block;
+    /* margin-left: 25px; */
+    margin-block: 4px;
+    white-space: nowrap;
+    font-size: 18px;
+    font-family: "Myriad Pro","Open Sans",Arial,Helvetica,sans-serif;
+    color: white;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    float: left;
+    margin-left: 10px;
+}
+
+div.game_price {
+    padding: 1px 4px;
+    display: inline-block;
+    font-family: "Myriad Pro","Open Sans",Arial,Helvetica,sans-serif;
+    margin-top: 6px;
+    border-radius: 5px;
+    background-color: rgb(8, 15, 37);
+    color: white;
+    vertical-align: top;
+    float: right;
+    margin-right: 10px;
+}
+
+.favourite_b {
+    font-size: 14px;
+    border: 1px;
+    float: right;
+    background-color: rgb(14, 30, 77);
+    color: #B1B1B1;
+    border: #B1B1B1  2px solid;
+    margin-right: 8pt;
+    margin-bottom: 4px;
+    cursor: pointer;
+}
+
+
+/* page nav bar at bottom of the page*/
+
+section.page_nav div ul{
+    margin: 0 0 10px;
+    padding: 10px 10px 5px;
+    text-align: center;
+}
+section.page_nav div ul li{
+    display: inline;
+    margin: 0 2px;
+    padding: 0;
+}
+
+section.page_nav div ul li a{
+    display: inline-block;
+    margin-bottom: 5px;
+    padding: 5px 13px;
+    background: #eeeff7;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+section.page_nav div ul li a:hover{
+	color: #000;
+	background: #ccf;
+	border-color: #00f
+}

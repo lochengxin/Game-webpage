@@ -1,0 +1,42 @@
+<!-- games.html -->
+{% extends "template.html" %}
+
+{% block head %}
+    {{ super() }}
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/game.css') }}"> -->
+    <title>CS235 Game Library</title>
+{% endblock %}
+
+{% block main %}
+
+    <section>
+        <div class="message">
+            <h2>{{ message }}</h2>
+        </div>
+    </section>
+
+    <section>
+        <div class="section_title">
+            <h1>CS235 Game Library</h1>
+        </div>
+            <p>Welcome to the CS235 Game Library!</p>
+            <p>Step into a world of boundless entertainment, where imagination knows no limits and adventure awaits at every turn.</p>
+            <p>Our meticulously curated game library is a treasure trove that brings together the very best in gaming experiences, catering to every kind of player, from casual enthusiasts to hardcore strategists.</p>
+            <p>With a diverse collection spanning across genres, platforms, and eras, we're here to fuel your passion for gaming and provide you with a gateway to unforgettable interactive journeys.</p>
+            <p>Discover the thrill of epic narratives that transport you to fantastical realms, where you become the hero or heroine of your own story.</p>
+            <p>Immerse yourself in open-world environments, teeming with secrets to uncover and challenges to conquer.</p>
+            <p>Engage in heart-pounding battles that demand strategy, skill, and lightning-fast reflexes.</p>
+            <p>Or, if you prefer a more leisurely pace, lose yourself in captivating puzzles that test the depths of your intellect.</p>
+            <p>Our library is a haven for both nostalgia seekers and modern-day explorers. </p>
+            <p>Relive the classics that defined generations, from pixelated pioneers that kickstarted the industry, to iconic titles that have stood the test of time.</p>
+            <p>For those eager to embrace the cutting edge, dive into the latest releases that harness the full potential of technology, boasting stunning graphics, intricate mechanics, and dynamic storytelling.</p>
+            <p>Whether you're gaming solo, teaming up with friends, or facing off against rivals in fierce competition, our library caters to your social gaming desires.</p>
+            <p>Forge connections across the globe as you collaborate, strategize, and celebrate victories together.</p>
+            <p>With titles that support multiplayer modes, you'll build friendships and rivalries that endure beyond the digital realm.</p>
+            <p>At the CS235 Game Library, our mission is to be your go-to destination for gaming excellence.</p>
+            <p>We've scoured the world of gaming to bring you an extensive collection that guarantees endless hours of entertainment, discovery, and joy.</p>
+            <p>So, grab your controller, mouse, or keyboard, and embark on an unforgettable journey through pixels and polygons.</p>
+            <p>Your next gaming masterpiece awaits – all you have to do is press start!</p>
+    </section>
+
+{% endblock %}

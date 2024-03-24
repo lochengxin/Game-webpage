@@ -1,0 +1,13 @@
+/*setup fonts*/
+
+/*
+@font-face {
+    font-family: ""; 
+    src: url();
+}
+*/
+
+@font-face {
+    font-family: "SFProDisplay"; 
+    src: url(../fonts/FontsFree-Net-SFProDisplay-Bold.ttf);
+}

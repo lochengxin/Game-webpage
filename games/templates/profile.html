@@ -1,0 +1,82 @@
+<!-- profile.html -->
+{% extends "template.html" %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>CS235 Game Library</title>
+{% endblock %}
+
+{% block main %}
+
+    <section>
+        <div class="section_title">
+            <h1>Welcome back, {{ profile.username }}!</h1>
+        </div>
+    </section>
+
+    <section>
+        <h2 id="profile_review_title" class="profile_title">Reviews: {{ profile.user_reviews_num }}</h2>
+
+        <div id="profile_review_all_container">
+
+            {% for review in profile.user_reviews %}
+                <a href="/gameDescription/{{ review.game.game_id }}">
+                    <div class="profile_review_container">
+                        <div class="profile_review_column_one">
+                            <div class="profile_review_game_image">
+                                <img src="{{ review.game.image_url }}" alt="{{ review.game.title }}">
+                            </div>
+                        </div>
+
+                        <div class="profile_review_column_two">
+                            <div class="profile_review_rating">
+                                <p>Rating:
+                                {% for i in range(review.rating) %}
+                                    <span class="fa fa-star checked"></span>
+                                {% endfor %}
+                                {% for i in range(5-review.rating) %}
+                                    <span class="fa fa-star"></span>
+                                {% endfor %}
+                                </p>
+                            </div>
+                            <div class="profile_review_text">
+                                <p>{{ review.comment }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+            {% endfor %}
+
+        </div>
+
+        <h2 id="profile_favourite_title" class="profile_title">Favourite games: {{ profile.user_favourite_num }}</h2>
+
+        <div id="profile_favourite_all_container">
+
+            {% for game in profile.user_favourite %}
+                <div class="game">
+                    <a href="/gameDescription/{{ game.game_id }}">
+                        <div class="game_img">
+                            <img src="{{ game.image_url }}" alt="">
+                        </div>
+                        <div class="game_data">
+                            <div class="game_title">{{ game.title }}</div>
+                            {% if game.price == 0 %}
+                            <div class="game_price">Free to Play</div>
+                            {% else %}
+                            <div class="game_price">NZ$ {{ game.price }}</div>
+                            {% endif %}
+                        </div>
+                    </a>
+                    <a class="profile_favourite_remove_link" href="/profile/remove_favourite/{{ game.game_id }}">Remove from favourite</a>
+                </div>
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+{% endblock %}

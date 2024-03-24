@@ -1,0 +1,85 @@
+<!-- games.html -->
+{% extends "template.html" %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/game.css') }}">
+    <title>CS235 Game Library - game library</title>
+{% endblock %}
+
+{% block main %}
+
+    <section>
+        <div class="section_title">
+            <h1>Game Library</h1>
+        </div>
+
+        <div class="order_selection">
+            <h3>Order games by:</h3>
+            <!-- for each option of ordering of the games -->
+            {% for option in order_options %}
+            
+            <div class="orders">
+                <a href="{{ url_for('game_search_bp.show_games', target=target, type=type, page=page_info.current_page, order=option) }}">{{ option }}</a>
+            </div>
+            {% endfor %}
+
+        </div>
+        <div class="current_page">
+            <h3>page - {{ page_info.current_page }}: Displaying {{ page_info.current_display[0] }} - {{ page_info.current_display[1] }} of {{ page_info.number_of_games }}</h3>
+        </div>
+        
+
+        <div class="games_holder">
+
+            <!-- for each game in the given game list -->
+            {% for game in games %}
+                <div class="game">
+                    <a href="/gameDescription/{{ game.game_id }}">
+                        <div class="game_img">
+                            <img src="{{ game.image_url }}" alt="">
+                        </div>
+                        <div class="game_data">
+                            <div class="game_title">{{ game.title }}</div>
+                            {% if game.price == 0 %}
+                            <div class="game_price">Free to Play</div>
+                            {% else %}
+                            <div class="game_price">NZ$ {{ game.price }}</div>
+                            {% endif %}
+                        </div>
+                    </a>
+                    {% if game.game_id in favourite_list %}
+                        <a class="favourite_b" id="{{game.game_id}}" onclick=favourite(id)>Remove from favourite</a>
+                    {% else %}                        
+                        <a class="favourite_b" id="{{game.game_id}}" onclick=favourite(id)>Add to favourite</a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+
+        </div>
+    </section>
+
+    <section class="page_nav">
+        <div>
+            <ul>
+                {% for page in pages %}
+                <li>
+                    <a href="{{ url_for('game_search_bp.show_games', target=target, type=type, page=page_info.current_page, order=option) }}">{{ page }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+    <script>
+        function favourite(id) {
+            let target = document.getElementById(id).innerHTML;
+            let c = (target=="Add to favourite");
+            window.open("/search/change_favourite?game_id=" +id,"_parent")
+    
+            window.open("/search/change_favourite?game_id="+id,"_parent")
+    
+            "/search?page={{ page }}&order={{ page_info.current_order }}"
+        }
+    </script>
+{% endblock %}
